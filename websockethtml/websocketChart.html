@@ -1,0 +1,673 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室页面XIYU</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            font-family: "微软雅黑";
+        }
+
+        .chat_all {
+            width: 1000px;
+            height: 600px;
+            border: 1px solid black;
+            position: relative;
+            top: 100px;
+            margin: 0 auto;
+        }
+
+        .chat_banner {
+            background: linear-gradient(to right, #a41adc, #ee1351, #a41adc); /* 标准的语法 */
+            width: 999px;
+            height: 50px;
+            border: 1px solid blue;
+        }
+
+        .chat_body {
+            width: 999px;
+            height: 546px;
+            border: 1px solid red;
+        }
+
+        .chat_online {
+            overflow: hidden;
+            float: left;
+            height: 546px;
+            width: 200px;
+            border: 1px solid yellow;
+            background-color: white;
+        }
+
+        .search_online {
+            text-indent: 2em;
+            height: 40px;
+            border: 1px solid black;
+        }
+
+        .search_online input[type="text"] {
+            outline: none;
+            margin: 2px auto;
+            height: 30px;
+            width: 60%;
+            border-radius: 8px;
+            text-indent: 2em;
+        }
+
+        .online_friend ul li {
+
+            list-style-type: none;
+        }
+
+        .online_friend ul li {
+
+            height: 60px;
+            border-bottom: 1px solid #1c1f21;
+            margin-top: 10px;
+        }
+
+        .a_friend {
+            border: 1px solid #2328ff;
+            height: 55px;
+            background-color: #39fffe;
+
+        }
+        .a_friend_click {
+            border: 1px solid #2328ff;
+            height: 55px;
+            background-color: red;
+
+        }
+
+        .head_portrait {
+
+            background-color: #b532ff;
+            margin: 6px 6px;
+            float: left;
+            height: 40px;
+            width: 40px;
+            border: 1px solid orangered;
+            border-radius: 50%;
+        }
+
+        .head_text {
+            padding: 3px;
+            font-size: 22px;
+            text-align: center;
+            vertical-align: center;
+            margin-top: 3px;
+        }
+
+        .friend {
+
+            float: right;
+            height: 54px;
+            width: 140px;
+            /*border: 1px solid rebeccapurple;*/
+        }
+
+        .friend .name {
+
+            margin: 4px 6px;
+            float: left;
+        }
+
+        .friend .this_time {
+            margin-top: 4px;
+            float: right;
+        }
+
+        .chat_main {
+            float: left;
+            width: 548px;
+            height: 546px;
+            border: 1px solid seagreen;
+            background-color: white;
+           /* background: url("../img/img_chat.jpg") no-repeat;*/
+            background-size: cover;
+        }
+        .chat_top {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to top, rgba(9, 216, 237, 0.99), #72cad4);
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            text-indent: 10px;
+            line-height: 30px;
+        }
+
+        .send_message {
+            width: 548px;
+            height: 65px;
+            position: absolute;
+            bottom: 0px;
+            background: linear-gradient(to top, rgba(9, 216, 237, 0.99), #72cad4);
+        }
+
+        .send_message input[type="text"] {
+            width: 470px;
+            height: 30px;
+            margin-top: 16px;
+            margin-left: 10px;
+            border-radius: 10px 0 0 10px;
+            text-indent: 2em;
+            outline: none;
+            background-color: white;
+            border: none;
+        }
+
+        .send_message input[type="button"] {
+            border-radius: 0 10px 10px 0;
+            width: 35px;
+            height: 30px;
+            background-color: white;
+            border: none;
+            margin-left: 0;
+            background-color: white;
+            border: none;
+            outline: none;
+
+        }
+
+        .send_message input[type="button"]:hover {
+            background-color: orangered;
+        }
+
+        .send_message input[type="button"]:active {
+            background-color: #879eee;
+        }
+
+        .chat_namecard {
+            float: left;
+            width: 245px;
+            height: 546px;
+            border: 1px solid saddlebrown;
+           /* background-color: #f1fea9;*/
+        }
+
+
+        .chat_content ul{
+            list-style-type: none;
+        }
+        .chat_content{
+            overflow: auto;
+            width: 540px;
+            /*设置高度滚动条才有效*/
+            height: 470px;
+        }
+        .chat_content li{
+            margin-top: 10px;
+            width: 540px;
+            clear: both;
+            display: block;
+
+        }
+
+        .chat_content li img{
+            margin: 6px 0 0 0;
+        }
+
+        .chat_content li span {
+            background: #ffd351;
+            padding: 10px;
+            border-radius: 10px;
+            /*最大宽度不能太长，不然布局会混乱*/
+            max-width: 400px;
+            border: 1px solid white;
+            box-shadow: 0 0 3px #879eee;
+            margin: 6px 10px 0 10px;
+            overflow: hidden;
+        }
+
+        .chat_content li img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chat_content li img.imgleft {
+            margin-left: 10px;
+            float: left;
+        }
+
+        .chat_content li img.imgright {
+            margin-right: 10px;
+            float: right;
+        }
+
+        .chat_content li span.spanleft {
+            float: left;
+        }
+
+        .chat_content li span.spanright {
+            float: right;
+        }
+
+        /*关闭按钮样式*/
+        .close_btn {
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            display: block;
+            position: absolute;
+            right:20px;
+            top:15px;
+            font-family: Helvetica, STHeiti;
+            _font-family: '\u9ed1\u4f53', 'Book Antiqua', Palatino;
+            font-size: 18px;
+            border-radius: 20px;
+            background: #999;
+            color: #FFF;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+            -moz-transition: linear .06s;
+            -webkit-transition: linear .06s;
+            transition: linear .06s;
+            padding: 0;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .close_btn:hover {
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            right:20px;
+            top:15px;
+            color: #FFF;
+            box-shadow: 0 1px 3px rgba(209, 40, 42, .5);
+            background: #d1282a;
+            border-radius: 24px;
+            transition: all 0.2s ease-out;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<div class="chat_all">
+    <!--banner-->
+    <!--websocket连接提示结果消息-->
+    <div class="chat_banner" id="connect_message">
+        <!--websocket关闭按钮-->
+        <a class="close_btn" id="close_btn" href="javascript:void(0);">×</a>
+    </div>
+    <div class="chat_body">
+        <!--在线列表-->
+        <div class="chat_online">
+            <!--搜索-->
+            <div class="search_online">
+                    <form>
+                        <input type="text" placeholder="搜索联系人">
+                    </form>
+                </div>
+            <div class="online_friend" id="online_friend_content">
+                <ul id="list" style="list-style: none ">
+                </ul>
+            </div>
+        </div>
+        <!--聊天界面-->
+        <div class="chat_main">
+            <div class="chat_top" id="chat_top"></div>
+            <div class="chat_div" id="chat_div">
+                <ul id="chat_ul" class="chat_content">
+
+                </ul>
+
+            </div>
+            <div class="send_message">
+                <form>
+                    <input type="text" placeholder="请输入消息" id="send_txt">
+                    <input type="button" value="发送" id="send_btn">
+
+                </form>
+            </div>
+        </div>
+        <!--名片-->
+        <div class="chat_namecard" id="chat_namecard">
+            <!--用于展示聊天消息，当前我在和谁进行聊天，当前在-->
+
+
+
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var GLOBAL_SESSION_CACHE = {
+        'single_contact':{},
+        'group_contact':{},
+    };
+
+    var websocket = null;
+    var uuid = getuuid();
+    var userName= getNames();
+    var currentTime= getCurrentTime();
+    var now = -1;//左右浮动
+    var send_btn = document.getElementById('send_btn');//发送按钮
+    var send_txt = document.getElementById('send_txt');//发送消息文本框
+    var chat_ul = document.getElementById('chat_ul');//发送消息文本框
+    var chat_span = chat_ul.getElementsByTagName('span');//消息展示文字样式
+    var chat_img = chat_ul.getElementsByTagName('img');//消息展示图片
+    var close_btn = document.getElementById('close_btn');//关闭按钮
+    var clickUserIndex = 999999999;
+    var receiveMsg = '';
+    var receiveData = '';
+    //判断当前浏览器是否支持WebSocket
+    if('WebSocket' in window){
+        //连接WebSocket节点
+        /*websocket = new WebSocket("ws://192.168.1.4:8080/websocket/30/xiaoyuyu");*/
+       /* websocket = new WebSocket("ws://192.168.1.4:8080/websocket/" + uuid + "/xiaoyuyu");*/
+        websocket = new WebSocket("ws://192.168.1.4:8080/websocket/" + uuid + "/"+ userName);
+    }
+    else{
+        alert('Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function(){
+        alert("连接发生错误，无法进行通信喽！");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function(event){
+        alert("连接成功，可以开始聊天啦~~~");
+    }
+
+    //接收到消息的回调方法（将消息内容显示在画面左侧）
+    websocket.onmessage = function(event){
+         setMessageInnerHTML(event.data);
+        //根据type值处理后台返回数据，其中0：刷新好友列表， 1 ：群聊 2：点对点
+
+        localStorage.setItem('receiveData',event.data);
+        receiveData = JSON.parse(event.data);
+        var receiveType = receiveData.type;
+        var sourceSid = receiveData.sourceSid;
+        alert("欢迎"+sourceSid+"进入聊天室呀~~~");
+        receiveMsg = JSON.parse(receiveData.msg);
+        var currentUserList = '';
+        if(receiveType == 0){
+            //将当前好友列表存入session
+            localStorage.setItem("userList",receiveData.msg);
+            currentUserList = JSON.parse(localStorage.getItem('userList'));
+            var  innerHTML = currentTime + "当前正刷新好友列表";
+            var str="";
+            var list = document.getElementById('list');
+            $.each(currentUserList, function (index) {
+                //循环获取数据
+                var userName = currentUserList[index].userName;
+                var sid = currentUserList[index].sid;
+                str += "<li class='a_friend' id="+ sid + ">" +userName+"<br>"+sid+"</li>";
+            });
+            list.innerHTML = str;
+
+            //点击后显示高亮某条数据
+            $("#online_friend_content #list .a_friend").click(function () {
+                console.log($(this).index());
+                clickUserIndex = $(this).index();
+                for(var i = 0 ;i< currentUserList.length;i++){
+                    var sendUserName =  currentUserList[clickUserIndex].userName;
+                }
+                alert("开始和您的朋友"+sendUserName +"开始聊天喽！");
+                $(this).toggleClass("a_friend_click");
+                //聊天对象写入表头
+                if(document.getElementById('chat_top').innerHTML == ""){
+                    document.getElementById('chat_top').innerHTML += sendUserName;
+                }else{
+                    document.getElementById('chat_top').innerHTML = ""
+                    document.getElementById('chat_top').innerHTML += sendUserName;
+                }
+
+                //记录当前正在和谁聊天
+                localStorage.setItem('currentChatUser',sendUserName);
+                var localChatUser = localStorage.getItem('currentChatUser');
+               //记录当前点击的li的下标
+                localStorage.setItem('index',clickUserIndex);
+                OpenDialogBox(clickUserIndex);
+                //定义一个全局变量存储用户信息
+
+                //点击列表打开聊天窗口
+                //点击用户打开连天窗口
+                function OpenDialogBox(index){
+                    //获取与谁聊天
+                    for(var i = 0 ;i< receiveMsg.length;i++){
+                        var contact_id =  receiveMsg[index].sid;
+                        var contact_name =  receiveMsg[index].userName;
+                    }
+                    var contact_type = 'single_contact';
+                    //先把当前聊天的内容存储起来
+                    //获取当前聊天内容
+                   /* DumpSession();*/
+                    //当前聊天内容存储结束
+                    //修改聊天框与谁聊天
+
+                    //清空原先聊天记录
+                    // 用存起来的页面绑到新数据上ffv
+                    $('.chat_div').html= LoadSession(contact_id,contact_type);
+                   /* $('.chat_div').html(LoadSession(contact_id,contact_type));*/
+                    //清除未读消息显示
+                   /* var unread_msg_num_ele = $(ele).find('span')[0];
+                    $(unread_msg_num_ele).text(0);
+                    $(unread_msg_num_ele).addClass('hide')*/
+                }//打开聊天窗口结束
+
+                //存储未打开的聊天内容
+                function DumpSession2(contact_id,contact_type,content) {
+                    if(contact_id){
+                        GLOBAL_SESSION_CACHE[contact_type][contact_id] = content;
+                    }
+
+                }
+                //存储当前聊天内容
+                function DumpSession() {
+                    for(var i = 0 ;i< receiveMsg.length;i++){
+                        if(receiveMsg[i].userName == localChatUser){
+                        /*if(receiveMsg[i].userName == localChatUser){*/
+                            var contact_id = receiveMsg[i].sid;
+                            var contact_type =  'single_contact';
+                            var content = document.getElementById('chat_ul') ;
+                        }
+                    }
+                    if(contact_id){
+                      GLOBAL_SESSION_CACHE[contact_type][contact_id] = content;
+                    }
+
+                }
+                //加载新的聊天窗口,把要打开的聊天内容重新加载上
+                function LoadSession(current_contact_id,current_contact_type) {
+                    //通过hasOwnProperty判断key是否存在
+                    if(GLOBAL_SESSION_CACHE[current_contact_type].hasOwnProperty(current_contact_id)){
+                        var session_html = GLOBAL_SESSION_CACHE[current_contact_type][current_contact_id];
+                    }else{
+                        var session_html = '';
+                    }
+                    //把内容返回
+                    return session_html
+                    $('.chat_div').html(session_html);
+                };
+                //加载新窗口结束
+
+            });
+
+        }else if(receiveType == 1){
+            var  innerHTML = currentTime + "当前是群聊状态";
+        }else if(receiveType == 2){
+
+            //将所有数据 存入session
+            var messagelist = [];
+
+
+
+            messagelist.push(currentUserList);
+
+            var li = document.getElementsByTagName("li");
+            for(var i = 0;i<li.length; i++){
+                if(li[i].id == sourceSid){
+                   alert("来自 " + li[i].innerText + " 的消息,请注意查收哈！");
+                    //聊天对象写入表头
+                    if(document.getElementById('chat_top').innerHTML == ""){
+                        document.getElementById('chat_top').innerHTML += li[i].innerText;
+                    }else{
+                        document.getElementById('chat_top').innerHTML = ""
+                        document.getElementById('chat_top').innerHTML += li[i].innerText;
+                    }
+                }
+            }
+
+
+
+
+            var  innerHTML = currentTime + "当前是点对点聊天状态";
+            //消息内容展示处理
+            if (receiveMsg == ''|| receiveMsg == null) {
+                console.log("返回消息内容为空");
+            } else {
+                chat_ul.innerHTML += '<li><img src="../img/img_user1.jpg"><span>' + receiveMsg + '</span>';
+                now++;
+                //接收消息展示在左侧
+                chat_span[now].className = 'spanleft';
+                chat_img[now].className = 'imgleft';
+            }
+            //高亮消息来源
+            $("#"+ sourceSid).toggleClass("a_friend_click");
+        }
+        document.getElementById('chat_namecard').innerHTML += innerHTML + '<br/>';
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function(){
+        alert("连接已关闭，无法进行通信喽！");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function(){
+        websocket.close();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML){
+        document.getElementById('connect_message').innerHTML += innerHTML + '<br/>';
+    }
+
+    //利用js生成uuid
+    function getuuid() {
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+    }
+
+    //利用js生成随机姓名
+
+    function getNames() {
+        var familyNames = new Array(
+                "赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈",
+
+                "褚", "卫", "蒋", "沈", "韩", "杨", "朱", "秦", "尤", "许",
+
+                "何", "吕", "施", "张", "孔", "曹", "严", "华", "金", "魏",
+
+                "陶", "姜", "戚", "谢", "邹", "喻", "柏", "水", "窦", "章",
+
+                "云", "苏", "潘", "葛", "奚", "范", "彭", "郎", "鲁", "韦",
+
+                "昌", "马", "苗", "凤", "花", "方", "俞", "任", "袁", "柳",
+
+                "酆", "鲍", "史", "唐", "费", "廉", "岑", "薛", "雷", "贺",
+
+                "倪", "汤", "滕", "殷", "罗", "毕", "郝", "邬", "安", "常",
+
+                "乐", "于", "时", "傅", "皮", "卞", "齐", "康", "伍", "余",
+
+                "元", "卜", "顾", "孟", "平", "黄", "和", "穆", "萧", "尹"
+
+        );
+
+        var givenNames = new Array(
+                "子璇", "淼", "国栋", "夫子", "瑞堂", "甜", "敏", "尚", "国贤", "贺祥", "晨涛",
+
+                "昊轩", "易轩", "益辰", "益帆", "益冉", "瑾春", "瑾昆", "春齐", "杨", "文昊",
+
+                "东东", "雄霖", "浩晨", "熙涵", "溶溶", "冰枫", "欣欣", "宜豪", "欣慧", "建政",
+
+                "美欣", "淑慧", "文轩", "文杰", "欣源", "忠林", "榕润", "欣汝", "慧嘉", "新建",
+
+                "建林", "亦菲", "林", "冰洁", "佳欣", "涵涵", "禹辰", "淳美", "泽惠", "伟洋",
+
+                "涵越", "润丽", "翔", "淑华", "晶莹", "凌晶", "苒溪", "雨涵", "嘉怡", "佳毅",
+
+                "子辰", "佳琪", "紫轩", "瑞辰", "昕蕊", "萌", "明远", "欣宜", "泽远", "欣怡",
+
+                "佳怡", "佳惠", "晨茜", "晨璐", "运昊", "汝鑫", "淑君", "晶滢", "润莎", "榕汕",
+
+                "佳钰", "佳玉", "晓庆", "一鸣", "语晨", "添池", "添昊", "雨泽", "雅晗", "雅涵",
+
+                "清妍", "诗悦", "嘉乐", "晨涵", "天赫", "玥傲", "佳昊", "天昊", "萌萌", "若萌"
+
+        );
+        var i = parseInt(familyNames.length * Math.random());
+        var familyName = familyNames[i];
+        var j = parseInt(givenNames.length * Math.random());
+        var givenName = givenNames[j];
+        return familyName + givenName;
+    }
+
+    //利用js获取当前 年月日 时分
+
+    function getCurrentTime() {
+        var currentDate = new Date(); //实例一个时间对象；
+        var year = currentDate.getFullYear();   //获取系统的年；
+        var month = currentDate.getMonth()+1;   //获取系统月份，由于月份是从0开始计算，所以要加1
+        var date = currentDate.getDate(); // 获取系统日，
+        var hours= currentDate.getHours(); //获取系统时，
+        var minutes = currentDate.getMinutes(); //分
+        return year + "年" + month + "月" + date + "日" + hours+ "时" + minutes + "分";
+    }
+    window.onload = function () {
+        //左侧列表展示
+        var localIndex  = localStorage.getItem('index');
+       /* setTimeout("alert('1 seconds!')",1000);*/
+        //显示上一次的高亮
+        setTimeout(function() {
+            $("#list li").eq(localIndex).toggleClass("a_friend_click");
+        }, 1000);
+
+        var sendType = 1;//默认为群聊
+        send_btn.onclick = function () {
+            if(clickUserIndex != 999999999){//点对点聊天
+                for(var i = 0 ;i< receiveMsg.length;i++){
+                    var sendSid =  receiveMsg[clickUserIndex].sid;
+                }
+                sendType = 2;
+            }
+            var sendData = {sendSid:sendSid,msg:send_txt.value,type:sendType}
+            var jsonSendData = JSON.stringify(sendData);
+            websocket.send(jsonSendData);
+            if (send_txt.value == '') {
+                alert("请不要惜字如金");
+            } else {
+                //发送消息展示在右侧
+                chat_ul.innerHTML += '<li><img src="../img/img_user.jpg"><span>' + send_txt.value + '</span>';
+                now++;
+                chat_span[now].className = 'spanright';
+                chat_img[now].className = 'imgright';
+                send_txt.value = '';
+            }
+        }
+        close_btn.onclick = function () {
+            //关闭socket连接
+            websocket.close();
+            if(confirm("您确定要关闭当前页面吗？")){
+                window.opener=null;
+                window.open('','_self');
+                window.close();
+            }else{}
+        }
+    }
+</script>
+</html>
